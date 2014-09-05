@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coursera Course Project - Developing Data Products</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Coursera Course Project - Developing Data Products">
+  <meta name="author" content="Matthias Stierle">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Coursera Course Project - Developing Data Products</h1>
+    <h2>Would you have survived the sinking of the Titanic?</h2>
+    <p>Matthias Stierle<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+.title-slide {
+  background-color: #EDE0CF; /* #EDE0CF; ; #CA9F9D*/
+}
+
+.title-slide hgroup > h1{
+ font-family: 'Oswald', 'Helvetica', sanserif; 
+}
+
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2 {
+  color: #535E43 ;  /* ; #EF5150*/
+}
+</style>
+
+<h2>Basic idea</h2>
+
+<ul>
+<li>Choose one of the example R data sets that is suitable for making predictions</li>
+</ul>
+
+<h3>Summary of Titanic data set</h3>
+
+<pre><code>##   Class       Sex        Age     Survived      Freq      
+##  1st :8   Male  :16   Child:16   No :16   Min.   :  0.0  
+##  2nd :8   Female:16   Adult:16   Yes:16   1st Qu.:  0.8  
+##  3rd :8                                   Median : 13.5  
+##  Crew:8                                   Mean   : 68.8  
+##                                           3rd Qu.: 77.0  
+##                                           Max.   :670.0
+</code></pre>
+
+<p>&#8594; Predict whether one would have survived the sinking of the Titanic</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Choose a learning algorithm</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>As all the predictor variables (Sex, Age and Class) are factors we can make use of a rule-based algorithm.</li>
+<li>Therefore we choose naive bayes contained in the e1071 package</li>
+</ul>
+
+<h4>Load Package and built classifier</h4>
+
+<pre><code class="r">library(e1071)
+classifier &lt;- naiveBayes(Survived ~ ., data = Titanic)
+</code></pre>
+
+<h4>Example</h4>
+
+<pre><code>##   Class  Sex   Age
+## 1   1st Male Child
+</code></pre>
+
+<h4>Predict on example</h4>
+
+<pre><code class="r">predict(classifier,example)
+</code></pre>
+
+<pre><code>## [1] Yes
+## Levels: No Yes
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Layout</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Sidepar Panel</h3>
+
+<ul>
+<li>A sidepar panel for defining the 3 input variables: Sex, Age and Class</li>
+<li>A dropdown for class as we have more than 2 options</li>
+<li>Radio Buttons for Sex and Age as we have only 2 options for each</li>
+</ul>
+
+<h3>Main Panel</h3>
+
+<ul>
+<li>A short description of the app</li>
+<li>A short documentation/manual how to use the app</li>
+<li>The result of the prediction including an image</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>The result</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The app can be found on <a href="https://supamuc.shinyapps.io/myApp/">https://supamuc.shinyapps.io/myApp/</a></li>
+</ul>
+
+<p><img src="shark_screenshot.png" align ="center" alt="Drawing" style="width: 800px;"/></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title=''>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Choose a learning algorithm'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Layout'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='The result'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+   
+  </html>
